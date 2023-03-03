@@ -30,7 +30,7 @@ button { cursor: pointer; border: 0; background-color: transparent; }
 	margin: 0 auto;
 }
 
-.swiper-wrapper img {
+.swiper-slide img {
 	display: inline-block;
 	width: 100%;
 	height: calc(100vh - 100px);
@@ -38,7 +38,7 @@ button { cursor: pointer; border: 0; background-color: transparent; }
 	transition: all ease 1s;
 }
 
-.swiper-wrapper img.on {
+.swiper-slide.active img {
 	transform: scale(1.2);
 }
 

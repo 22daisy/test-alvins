@@ -57,19 +57,19 @@
 
 
 		const content = document.querySelector('.content');
-		const bannerImg = document.querySelector('.swiper-slide img')
+		const slideList = document.querySelector('.swiper-wrapper').children;
+		const slideAct = document.querySelector('.swiper-slide-active');
 
 		window.addEventListener('scroll', function(e) {
 			let scrollY = this.scrollY;
-			console.log(scrollY)
+			let num = 0;
 
-			if(scrollY > 100) {
-				bannerImg.className = 'on'
-			} else {
-				bannerImg.className = ' '
+			if(scrollY > 100 && document.querySelector('.swiper-slide').classList.contains('.swiper-slide-active')) {
+				console.log('a');
 			}
 
 		})
+
 
 
 	</script>
