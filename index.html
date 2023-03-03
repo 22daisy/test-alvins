@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Alvins Testpage</title>
+	
+	<!-- Application Style / Script -->
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="js/lib/jquery-ui.css">
+	<link rel="stylesheet" href="js/lib/swiper-bundle.min.css">
+	<script src="js/lib/jquery-3.4.1.min.js"></script>
+	<script src="js/lib/jquery-ui.min.js"></script>
+	<script src="js/lib/swiper-bundle.min.js"></script>
+</head>
+<body>
+	<h1 class="page-head hide">Alvins Testpage</h1>
+
+	<div class="wrapper">
+		<div class="swiper-container" id="swiper-container">
+			<ul class="swiper-wrapper">
+				<li class="swiper-slide">
+					<img src="img/banner01.jpg" alt="" />
+				</li>
+				<li class="swiper-slide">
+					<img src="img/banner02.jpg" alt="" />
+				</li>
+				<li class="swiper-slide">
+					<img src="img/banner03.jpg" alt="" />
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="content">
+		<ul class="gnb-wrap">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+	</div>
+
+
+	<script>
+		const slide = new Swiper('#swiper-container', {
+						slidesPerView : 'auto', // 한 슬라이드에 보여줄 갯수
+						loop : false, // 슬라이드 반복 여부
+						loopAdditionalSlides : 1, // 슬라이드 반복 시 마지막 슬라이드에서 다음 슬라이드가 보여지지 않는 현상 수정
+						pagination : false, // pager 여부
+						autoplay : false,
+						navigation: {   // 버튼 사용자 지정
+							nextEl: '.swiper-button-next',
+							prevEl: '.swiper-button-prev',
+						},
+					})
+	</script>
+</body>
+</html>
