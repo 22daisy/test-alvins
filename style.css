@@ -35,10 +35,14 @@ button { cursor: pointer; border: 0; background-color: transparent; }
 	width: 100%;
 	height: calc(100vh - 100px);
 	object-fit: cover;
-	transition: all ease 1s;
+	transition: all ease .7s;
 }
 
-.swiper-slide.active img {
+.swiper-slide.action img {
+	display: inline-block;
+	width: 100%;
+	height: calc(100vh - 100px);
+	object-fit: cover;
 	transform: scale(1.2);
 }
 

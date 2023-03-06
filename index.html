@@ -19,13 +19,13 @@
 		<div class="swiper-container" id="swiper-container">
 			<ul class="swiper-wrapper">
 				<li class="swiper-slide">
-					<img src="img/banner01.jpg" alt="" />
+					<img src="img/banner03.jpg" alt="" />
 				</li>
 				<li class="swiper-slide">
 					<img src="img/banner02.jpg" alt="" />
 				</li>
 				<li class="swiper-slide">
-					<img src="img/banner03.jpg" alt="" />
+					<img src="img/banner01.jpg" alt="" />
 				</li>
 			</ul>
 		</div>
@@ -45,12 +45,12 @@
 		history.scrollRestoration = "manual";
 
 		const slide = new Swiper('#swiper-container', {
-						slidesPerView : 'auto', // 한 슬라이드에 보여줄 갯수
-						loop : true, // 슬라이드 반복 여부
-						loopAdditionalSlides : 1, // 슬라이드 반복 시 마지막 슬라이드에서 다음 슬라이드가 보여지지 않는 현상 수정
-						pagination : true, // pager 여부
+						slidesPerView : 'auto',
+						loop : true,
+						loopAdditionalSlides : 1,
+						pagination : true,
 						autoplay : false,
-						navigation: {   // 버튼 사용자 지정
+						navigation: {
 							nextEl: '.swiper-button-next',
 							prevEl: '.swiper-button-prev',
 						},
@@ -59,17 +59,40 @@
 
 		const content = document.querySelector('.content');
 		const slideList = document.querySelector('.swiper-wrapper').children;
-		const slideAct = document.querySelector('.swiper-slide-active');
 
-		window.addEventListener('scroll', function(e) {
+		const slideNum = slide.on('transitionEnd');
+
+		window.addEventListener('scroll', function() {
 			let scrollY = this.scrollY;
-			let num = 0;
 
-			if(scrollY > 100 && document.querySelector('.swiper-slide').classList.contains('.swiper-slide-active')) {
-				console.log('a');
+
+			if(scrollY > 100) {
+				slideList[slideNum.activeIndex].classList.add('action');
+			} else {
+				slideList[slideNum.activeIndex].classList.remove('action');
 			}
 
 		})
+
+
+		content.addEventListener("touchend", handleEnd, false);
+
+		function handleEnd() {
+			console.log(window.scrollY)
+			if(window.scrollY > screen.height / 2) {
+				window.scroll({
+					top: screen.height,
+					left: 0,
+					behavior: 'smooth'
+				});
+			}else {
+				// window.scroll({
+				// 	top: window.scrollY,
+				// 	left: 0,
+				// 	behavior: 'smooth'
+				// });
+			}
+		}
 
 
 
