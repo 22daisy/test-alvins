@@ -29,15 +29,15 @@
 				</li>
 			</ul>
 		</div>
-	</div>
 
-	<div class="content">
-		<ul class="gnb-wrap">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
+		<div class="content">
+			<ul class="gnb-wrap">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
 	</div>
 
 
@@ -64,19 +64,24 @@
 
 		window.addEventListener('scroll', function() {
 			var scrollY = document.documentElement.scrollTop;
-			var slideIdx = slideList[slideNum.activeIndex]
+			var slideIdx = slideList[slideNum.activeIndex];
 
 			return (scrollY > screen.height / 6 ? slideIdx.classList.add('action') : slideIdx.classList.remove('action'))
 
 		})
 
 		content.addEventListener("touchend", handleEnd, false);
-		// content.addEventListener("touchstart", handleStart, false);
 
 		function handleEnd(){
 			var scrollY = document.documentElement.scrollTop;
 
-			return (scrollY > screen.height / 2 ? content.scrollIntoView(top) : null)
+			return (scrollY > screen.height / 2 ?
+						(
+							content.scrollIntoView(top)
+						)
+						: null
+					)
+
 
 			// if(scrollY = 690) {
 			// 	console.log(scrollY)
