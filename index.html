@@ -59,41 +59,32 @@
 
 		const content = document.querySelector('.content');
 		const slideList = document.querySelector('.swiper-wrapper').children;
-
 		const slideNum = slide.on('transitionEnd');
 
+
 		window.addEventListener('scroll', function() {
-			let scrollY = this.scrollY;
+			var scrollY = document.documentElement.scrollTop;
+			var slideIdx = slideList[slideNum.activeIndex]
 
-
-			if(scrollY > 100) {
-				slideList[slideNum.activeIndex].classList.add('action');
-			} else {
-				slideList[slideNum.activeIndex].classList.remove('action');
-			}
+			return (scrollY > screen.height / 6 ? slideIdx.classList.add('action') : slideIdx.classList.remove('action'))
 
 		})
 
-
 		content.addEventListener("touchend", handleEnd, false);
+		// content.addEventListener("touchstart", handleStart, false);
 
-		function handleEnd() {
-			console.log(window.scrollY)
-			if(window.scrollY > screen.height / 2) {
-				window.scroll({
-					top: screen.height,
-					left: 0,
-					behavior: 'smooth'
-				});
-			}else {
-				// window.scroll({
-				// 	top: window.scrollY,
-				// 	left: 0,
-				// 	behavior: 'smooth'
-				// });
-			}
+		function handleEnd(){
+			var scrollY = document.documentElement.scrollTop;
+
+			return (scrollY > screen.height / 2 ? content.scrollIntoView(top) : null)
+
+			// if(scrollY = 690) {
+			// 	console.log(scrollY)
+			// 	window.scrollTo({top: screen.height, left: 0, behavior: 'smooth'});
+			// }else {
+			// 	window.scrollTo({top: screen.height / 2, left: 0, behavior: 'smooth'});
+			// }
 		}
-
 
 
 	</script>
