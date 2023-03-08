@@ -33,9 +33,6 @@
 		<div class="content">
 			<ul class="gnb-wrap">
 				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
 			</ul>
 		</div>
 	</div>
@@ -61,35 +58,27 @@
 		const slideList = document.querySelector('.swiper-wrapper').children;
 		const slideNum = slide.on('transitionEnd');
 
+		const throttle = (callback, delay) => {
+			let timer;
 
-		window.addEventListener('scroll', function() {
-			var scrollY = document.documentElement.scrollTop;
-			var slideIdx = slideList[slideNum.activeIndex];
-
-			return (scrollY > screen.height / 6 ? slideIdx.classList.add('action') : slideIdx.classList.remove('action'))
-
-		})
-
-		content.addEventListener("touchend", handleEnd, false);
-
-		function handleEnd(){
-			var scrollY = document.documentElement.scrollTop;
-
-			return (scrollY > screen.height / 2 ?
-						(
-							content.scrollIntoView(top)
-						)
-						: null
-					)
+			return (event) => {
+			// 타이머가 호출되면, 함수를 실행하고 타이머 제거
+			if (timer) return;
+			timer = setTimeout(() => {
+				callback(event);
+				timer = null;
+			}, delay);
+			};
+		};
 
 
-			// if(scrollY = 690) {
-			// 	console.log(scrollY)
-			// 	window.scrollTo({top: screen.height, left: 0, behavior: 'smooth'});
-			// }else {
-			// 	window.scrollTo({top: screen.height / 2, left: 0, behavior: 'smooth'});
-			// }
-		}
+		window.addEventListener('scroll', (e) => {
+				var scrollY = document.documentElement.scrollTop;
+				var slideIdx = slideList[slideNum.activeIndex];
+
+				return (scrollY > screen.height / 6 ? slideIdx.classList.add('action') : slideIdx.classList.remove('action'))
+			}
+		)
 
 
 	</script>

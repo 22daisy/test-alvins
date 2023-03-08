@@ -57,7 +57,7 @@ button { cursor: pointer; border: 0; background-color: transparent; }
 }
 
 .gnb-wrap li {
-	width: calc(100% / 3);
+	width: 100%;
 	aspect-ratio: 1/1;
 	background-color: thistle;
 	box-sizing: border-box;
