@@ -27,11 +27,11 @@
 		document.querySelector('.scroll01').addEventListener('touchstart', event => {
 
 			start = event.changedTouches[0].clientY;
-			move = 'undefined';
+			// move = 'undefined';
 
-			if(screenH / 4.5 < start < screenH / 4) {
-				window.scrollTo(0, 0);
-			}
+			// if(start > screenH / 1.5) {
+			// 	console.log('c')
+			// }
 		});
 
 		document.querySelector('.scroll01').addEventListener('touchmove', event => {
@@ -39,10 +39,10 @@
 			move = event.changedTouches[0].clientY;
 
 
-			if(screenH / 2 < move && move < screenH / 1.5) {
+			if(screenH / 2 < move && move < screenH / 1.2) {
 				console.log('a');
 				window.scrollTo(0, screenH);
-			} else if(move > screenH / 2) {
+			} else if(move < screenH / 2) {
 				console.log('b')
 				window.scrollTo(0, 0);
 			} else {
@@ -54,8 +54,9 @@
 
 			end = event.changedTouches[0].clientY;
 
-			if(screenH / 2 < end && end < screenH / 4) {
-				window.scrollTo(0, 0);
+			if(end == screenH / 1.5) {
+				console.log('c')
+				// 클래스로 트랜지션 효과 넣기
 			}
 		});
 	</script>
