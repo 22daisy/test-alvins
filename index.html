@@ -16,6 +16,12 @@
 	<h1 class="page-head hide">Alvins Testpage</h1>
 
 	<div class="wrapper">
+		<div class="head">
+			<div class="logo">
+				<img src="./img/alvins.png" alt="alvins" />
+			</div>
+		</div>
+
 		<div class="swiper-container" id="swiper-container">
 			<ul class="swiper-wrapper">
 				<li class="swiper-slide">
@@ -30,10 +36,13 @@
 			</ul>
 		</div>
 
-		<div class="content">
-			<ul class="gnb-wrap">
+		<div class="container">
+			<ul class="navigation">
 				<li></li>
 			</ul>
+			<div class="cont-wrap">
+
+			</div>
 		</div>
 	</div>
 
@@ -54,31 +63,37 @@
 					})
 
 
-		const content = document.querySelector('.content');
+		const content = document.querySelector('.container');
 		const slideList = document.querySelector('.swiper-wrapper').children;
 		const slideNum = slide.on('transitionEnd');
 
-		const throttle = (callback, delay) => {
-			let timer;
-
-			return (event) => {
-			// 타이머가 호출되면, 함수를 실행하고 타이머 제거
-			if (timer) return;
-			timer = setTimeout(() => {
-				callback(event);
-				timer = null;
-			}, delay);
-			};
-		};
-
+		var wrapperH = document.querySelector('.wrapper').offsetTop;
+		var bodyH = document.body.offsetHeight;
+		var swiperCon = document.querySelector('.swiper-container');
 
 		window.addEventListener('scroll', (e) => {
+
 				var scrollY = document.documentElement.scrollTop;
 				var slideIdx = slideList[slideNum.activeIndex];
 
 				return (scrollY > screen.height / 6 ? slideIdx.classList.add('action') : slideIdx.classList.remove('action'))
 			}
 		)
+
+		content.addEventListener('touchend', handleEnd, false);
+
+		function handleEnd() {
+			var handleScroll = document.documentElement.scrollTop;
+
+			if (handleScroll >= screen.height / 1.8) {
+				swiperCon.classList.add('none')
+			} else {
+				swiperCon.classList.remove('none')
+			}
+		}
+
+
+		console.log(window.pageYOffset);
 
 
 	</script>

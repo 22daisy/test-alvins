@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>alvins Scroll</title>
+</head>
+<body>
+	<style>
+		body, html { margin: 0; padding: 0; scroll-behavior: smooth; }
+		.box {width: 100%; height: 100vh; background-color: pink; position: fixed;}
+		.scroll01 {position: absolute; top: 90vh; width: 100%; height: 100vh; background-color: #fff; border-top-left-radius: 30px; border-top-right-radius: 30px;}
+	</style>
+	<div class="wrapper">
+		<div class="box"></div>
+		<div class="scroll01"></div>
+		<!-- <button type="button" class="btn-scroll02">버튼2</button> -->
+	</div>
+	<script>
+		history.scrollRestoration = "manual";
+
+		let start, end, move, screenH, scrollH;
+		screenH = screen.height;
+		start = screenH - start;
+
+		document.querySelector('.scroll01').addEventListener('touchstart', event => {
+
+			start = event.changedTouches[0].clientY;
+			move = 'undefined';
+
+			if(screenH / 4.5 < start < screenH / 4) {
+				window.scrollTo(0, 0);
+			}
+		});
+
+		document.querySelector('.scroll01').addEventListener('touchmove', event => {
+
+			move = event.changedTouches[0].clientY;
+
+
+			if(screenH / 2 < move && move < screenH / 1.5) {
+				console.log('a');
+				window.scrollTo(0, screenH);
+			} else if(move > screenH / 2) {
+				console.log('b')
+				window.scrollTo(0, 0);
+			} else {
+				move = undefined
+			}
+		});
+
+		document.querySelector('.scroll01').addEventListener('touchend', event => {
+
+			end = event.changedTouches[0].clientY;
+
+			if(screenH / 2 < end && end < screenH / 4) {
+				window.scrollTo(0, 0);
+			}
+		});
+	</script>
+</body>
+</html>
