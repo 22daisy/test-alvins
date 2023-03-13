@@ -10,11 +10,13 @@
 	<style>
 		body, html { margin: 0; padding: 0; scroll-behavior: smooth; }
 		.box {width: 100%; height: 100vh; background-color: pink; position: fixed;}
-		.scroll01 {position: absolute; top: 90vh; width: 100%; height: 100vh; background-color: #fff; border-top-left-radius: 30px; border-top-right-radius: 30px;}
+		.scroll {position: absolute; top: 90vh; width: 100%; height: 100vh; background-color: #fff; transition: all .5s cubic-bezier(.47,1.64,.41,.8);}
+
+		.scroll.on{}
 	</style>
 	<div class="wrapper">
 		<div class="box"></div>
-		<div class="scroll01"></div>
+		<div class="scroll"></div>
 		<!-- <button type="button" class="btn-scroll02">버튼2</button> -->
 	</div>
 	<script>
@@ -24,39 +26,38 @@
 		screenH = screen.height;
 		start = screenH - start;
 
-		document.querySelector('.scroll01').addEventListener('touchstart', event => {
+		const scroll = document.querySelector('.scroll');
+		const scrollStyle = getComputedStyle(scroll)
 
-			start = event.changedTouches[0].clientY;
-			// move = 'undefined';
+		// document.querySelector('.scroll').addEventListener('touchstart', event => {
 
-			// if(start > screenH / 1.5) {
-			// 	console.log('c')
-			// }
-		});
+		// 	start = event.changedTouches[0].clientY;
 
-		document.querySelector('.scroll01').addEventListener('touchmove', event => {
+		// 	if(start > screenH / 1.5) {
+
+		// 	}
+		// });
+
+		document.querySelector('.scroll').addEventListener('touchmove', event => {
 
 			move = event.changedTouches[0].clientY;
 
-
-			if(screenH / 2 < move && move < screenH / 1.2) {
-				console.log('a');
+			if(screenH / 2 < move && move < screenH / 1.3) {
 				window.scrollTo(0, screenH);
 			} else if(move < screenH / 2) {
-				console.log('b')
 				window.scrollTo(0, 0);
 			} else {
 				move = undefined
 			}
 		});
 
-		document.querySelector('.scroll01').addEventListener('touchend', event => {
+
+		document.querySelector('.scroll').addEventListener('touchend', event => {
 
 			end = event.changedTouches[0].clientY;
 
-			if(end == screenH / 1.5) {
-				console.log('c')
-				// 클래스로 트랜지션 효과 넣기
+			if(end > screenH / 1.4) {
+				window.scrollTo(0, 0);
 			}
 		});
 	</script>
